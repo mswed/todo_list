@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todos</title>
+</head>
+<body>
+    <form action="">
+        <h2>Todo Info <button id="add">Add</button></h2>
+        
+        <p>
+            <input type="text" name="todo" placeholder="What do I need to do?">
+        </p>
+        <p>
+            <label for="when">When Do I need to do it?</label>
+            <select name="when" id="when">
+                <option value="Now">Now</option>
+                <option value="Next">Next</option>
+                <option value="Future">Future</option>
+            </select>
+        </p>
+
+        <section>
+            <h2># NOW</h2>
+            <ul id="now">
+
+            </ul>
+        </section>
+        <section>
+            <h2># NEXT</h2>
+            <ul id="next">
+            
+            </ul>
+        </section>
+        <section>
+            <h2># FUTURE</h2>
+            <ul id="future">
+            
+            </ul>
+        </section>
+        
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
