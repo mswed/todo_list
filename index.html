@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Todos</title>
+    <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <form action="">
+    <form action="" id="newTodoForm">
         <h2>Todo Info <button id="add">Add</button></h2>
         
         <p>
-            <input type="text" name="todo" placeholder="What do I need to do?">
+            <input type="text" name="todo" placeholder="What do I need to do?" id="todo">
         </p>
         <p>
             <label for="when">When Do I need to do it?</label>
@@ -20,11 +21,14 @@
                 <option value="Future">Future</option>
             </select>
         </p>
+    </form>
 
+    <section id="lists">
         <section>
             <h2># NOW</h2>
             <ul id="now">
-
+                <li><input type="checkbox"></li>
+    
             </ul>
         </section>
         <section>
@@ -39,8 +43,10 @@
             
             </ul>
         </section>
+    </section>
+    
         
-    </form>
+    
     <script src="app.js"></script>
 </body>
 </html>
