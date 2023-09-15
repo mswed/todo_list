@@ -6,9 +6,9 @@
     <title>My Todos</title>
     <link rel="stylesheet" href="app.css">
 </head>
-<body>
+<body class="header">
     <form action="" id="newTodoForm">
-        <h2>Todo Info <button id="add">Add</button></h2>
+        <h2>New Todo</h2>
         
         <p>
             <input type="text" name="todo" placeholder="What do I need to do?" id="todo">
@@ -21,29 +21,28 @@
                 <option value="Future">Future</option>
             </select>
         </p>
+        <p>
+            <button id="add">Add</button>
+        </p>
     </form>
-
-    <section id="lists">
-        <section>
+    <hr>
+    <div id="lists" class="lists">
+        <div class="now">
             <h2># NOW</h2>
-            <ul id="now">
-                <li><input type="checkbox"></li>
-    
+            <ul id="now">   
             </ul>
-        </section>
-        <section>
+        </div>
+        <div class="next">
             <h2># NEXT</h2>
             <ul id="next">
-            
             </ul>
-        </section>
-        <section>
+        </div>
+        <div class="future">
             <h2># FUTURE</h2>
             <ul id="future">
-            
             </ul>
-        </section>
-    </section>
+        </div>
+    </div>
     
         
     

@@ -1,7 +1,31 @@
+
 ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .completed {
     text-decoration: line-through;
+}
+
+.header {
+    background-color: #FFEAC2;
+}
+
+.now {
+    background-color: #CC8D7A;
+    padding-bottom: 1%;
+}
+
+.next {
+    background-color: #F0BB7F;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+.future {
+    background-color: #91BF9D;
+    padding-top: 1%;
+
 }
