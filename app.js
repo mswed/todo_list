@@ -1,4 +1,5 @@
-// Declate variables
+
+// Declare variables
 const form = document.querySelector('#newTodoForm');
 const todo = document.querySelector('#todo');
 const when = document.querySelector('#when');
@@ -13,7 +14,7 @@ toggleLists()
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!todo.value) {
-        alert('Ahhh... Enter some in the todo field?')
+        alert('Ahhh... Enter something in the todo field?')
         return
     }
     let selectedOption = when.options[when.options.selectedIndex].text;
@@ -68,6 +69,7 @@ lists.addEventListener('click', function (e) {
     text.classList.toggle('completed')
     text.classList.contains('completed') ? cb.checked = true : cb.checked = false;
     toggleLists()
+    saveTodos()
 
 })
 
@@ -82,43 +84,63 @@ function toggleLists() {
 }
 
 function saveTodos() {
+
     for (let list of [now, next, future]) {
         let todos = []
-        window.localStorage.setItem(list.id, [])
         for (let todo of list.children) {
-            todos.push(todo.innerHTML)
-            console.log(todos)
-            window.localStorage.setItem(list.id, todos)
+            let todoInfo = {
+                html: todo.innerHTML,
+                status: todo.className ? todo.className : "none"
+            }
+            todos.push(todoInfo)
+            localStorage.setItem(list.id, JSON.stringify(todos))
+            let why = JSON.parse(localStorage.getItem(list.id))
+            console.log(why)
         }
     }
 }
 
 function loadTodos() {
     for (let list of ['now', 'next', 'future']) {
-        todos = localStorage.getItem(list)
-        if (todos) {
-            todos = todos.split(',')
-
-            console.log(todos)
-            if (list === 'now') {
-                targetList = now
-            } else if (list === 'next') {
-                targetList = next
-            } else {
-                targetList = future
-            }
-
-
+        if (localStorage.getItem(list)) {
+            let todos = JSON.parse(localStorage.getItem(list))
             for (let todo of todos) {
-                console.log('>>>>>', todo)
-                // console.log(JSON.parse(todos))
+                console.log(todo)
+                let { html, status } = todo
+                console.log(html)
+                if (list === 'now') {
+                    targetList = now
+                } else if (list === 'next') {
+                    targetList = next
+                } else {
+                    targetList = future
+                }
                 newTodo = document.createElement('li')
-                newTodo.innerHTML = todo
-                console.log('>>>>', newTodo)
+                newTodo.innerHTML = html
                 targetList.appendChild(newTodo)
+                if (status === 'completed') {
+                    newTodo.classList.add('completed')
+                    const cb = newTodo.children[0]
+                    cb.checked = true
+                }
+                
                 toggleLists()
-
             }
+
         }
+
+
+
+        //     for (let todo of todos) {
+        //         console.log('input >>>>>', todo)
+        // // console.log(JSON.parse(todos))
+        // newTodo = document.createElement('li')
+        // newTodo.innerHTML = todo
+        // console.log('>>>>', newTodo)
+        // targetList.appendChild(newTodo)
+        // toggleLists()
+
     }
+    //         }
+    //     }
 }
