@@ -1,4 +1,3 @@
-
 // Declare variables
 const form = document.querySelector('#newTodoForm');
 const todo = document.querySelector('#todo');
@@ -7,16 +6,20 @@ const lists = document.querySelector('#lists')
 const now = document.querySelector('#now')
 const next = document.querySelector('#next')
 const future = document.querySelector('#future')
+
+// Rus setup
 loadTodos()
 toggleLists()
 
 // New Todo Listener
 form.addEventListener('submit', function (e) {
     e.preventDefault();
+    // Warn user if todo is empty
     if (!todo.value) {
         alert('Ahhh... Enter something in the todo field?')
         return
     }
+    // Pick todo type (now, next, future)
     let selectedOption = when.options[when.options.selectedIndex].text;
     if (selectedOption === 'Now') {
         targetList = now;
@@ -26,18 +29,19 @@ form.addEventListener('submit', function (e) {
         targetList = future
     }
 
+    // Create todo
     const newTodo = document.createElement('li')
-    const todoId = Math.random() * Math.random()
     const checkbox = document.createElement('input')
     checkbox.type = 'checkbox'
     const removeBtn = document.createElement('button')
     removeBtn.innerText = 'X'
     newTodo.innerHTML = todo.value + '&nbsp&nbsp&nbsp'
-    newTodo.dataset.id = todoId
     newTodo.prepend(checkbox)
     newTodo.appendChild(removeBtn)
-
     targetList.appendChild(newTodo)
+
+    // Update UI and storage
+    todo.value = ''
     toggleLists()
     saveTodos()
 
@@ -66,14 +70,18 @@ lists.addEventListener('click', function (e) {
         return
     }
 
+    // Toggle todo
     text.classList.toggle('completed')
     text.classList.contains('completed') ? cb.checked = true : cb.checked = false;
+    
+    // Update UI and storage
     toggleLists()
     saveTodos()
 
 })
 
 function toggleLists() {
+    // Toggle the visibility of lists. Empty lists aren't displayed.
     for (let list of [now, next, future]) {
         if (list.children.length > 0) {
             list.parentElement.style.display = 'block'
@@ -84,8 +92,12 @@ function toggleLists() {
 }
 
 function saveTodos() {
-
+    // Store the todos in localStorage
     for (let list of [now, next, future]) {
+        // Clear the list
+        localStorage.setItem(list.id, '')
+        
+        // Make a new list
         let todos = []
         for (let todo of list.children) {
             let todoInfo = {
@@ -93,21 +105,21 @@ function saveTodos() {
                 status: todo.className ? todo.className : "none"
             }
             todos.push(todoInfo)
-            localStorage.setItem(list.id, JSON.stringify(todos))
-            let why = JSON.parse(localStorage.getItem(list.id))
-            console.log(why)
+        localStorage.setItem(list.id, JSON.stringify(todos))
         }
     }
 }
 
 function loadTodos() {
+    // Load the todos from localStorage
     for (let list of ['now', 'next', 'future']) {
         if (localStorage.getItem(list)) {
+            // We only run if we get a list item
             let todos = JSON.parse(localStorage.getItem(list))
+            
             for (let todo of todos) {
-                console.log(todo)
+                //Pickup which list we're adding to
                 let { html, status } = todo
-                console.log(html)
                 if (list === 'now') {
                     targetList = now
                 } else if (list === 'next') {
@@ -115,6 +127,7 @@ function loadTodos() {
                 } else {
                     targetList = future
                 }
+                // Add the todo
                 newTodo = document.createElement('li')
                 newTodo.innerHTML = html
                 targetList.appendChild(newTodo)
@@ -124,23 +137,12 @@ function loadTodos() {
                     cb.checked = true
                 }
                 
+                // Update the UI
                 toggleLists()
             }
 
         }
 
-
-
-        //     for (let todo of todos) {
-        //         console.log('input >>>>>', todo)
-        // // console.log(JSON.parse(todos))
-        // newTodo = document.createElement('li')
-        // newTodo.innerHTML = todo
-        // console.log('>>>>', newTodo)
-        // targetList.appendChild(newTodo)
-        // toggleLists()
-
     }
-    //         }
-    //     }
+
 }
