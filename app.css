@@ -1,8 +1,17 @@
 
+
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+
+li {
+    font-size: 20px;
+    font-family: 'B612', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .completed {
@@ -28,4 +37,9 @@ ul {
     background-color: #91BF9D;
     padding-top: 1%;
 
+}
+
+.b612 {
+    font-family: 'B612', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }

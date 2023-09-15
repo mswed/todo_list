@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Todos</title>
     <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=B612&family=Montserrat:wght@500&display=swap" rel="stylesheet">
 </head>
+
 <body class="header">
     <form action="" id="newTodoForm">
-        <h2>New Todo</h2>
-        
+        <h1 class="b612">NEW TODO</h1>
+
         <p>
             <input type="text" name="todo" placeholder="What do I need to do?" id="todo">
         </p>
         <p>
-            <label for="when">When Do I need to do it?</label>
+            <label for="when" class="b612">When Do I need to do it?</label>
             <select name="when" id="when">
                 <option value="Now">Now</option>
                 <option value="Next">Next</option>
@@ -22,30 +27,31 @@
             </select>
         </p>
         <p>
-            <button id="add">Add</button>
+            <button id="add" class="b612">Add</button>
         </p>
     </form>
     <hr>
     <div id="lists" class="lists">
         <div class="now">
-            <h2># NOW</h2>
-            <ul id="now">   
+            <h2 class="b612"># NOW</h2>
+            <ul id="now">
             </ul>
         </div>
         <div class="next">
-            <h2># NEXT</h2>
+            <h2 class="b612"># NEXT</h2>
             <ul id="next">
             </ul>
         </div>
         <div class="future">
-            <h2># FUTURE</h2>
+            <h2 class="b612"># FUTURE</h2>
             <ul id="future">
             </ul>
         </div>
     </div>
-    
-        
-    
+
+
+
     <script src="app.js"></script>
 </body>
+
 </html>
